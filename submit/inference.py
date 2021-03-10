@@ -123,14 +123,14 @@ class DatasetMNIST(torch.utils.data.Dataset):
     def __init__(self,
                  dir_path,
                  meta_df,
-                 transforms=to_tensor,#미리 선언한 to_tensor를 transforms로 받음
+                 transforms=to_tensor,  # 미리 선언한 to_tensor를 transforms로 받음
                  augmentations=None):
         
-        self.dir_path = dir_path # 데이터의 이미지가 저장된 디렉터리 경로
-        self.meta_df = meta_df # 데이터의 인덱스와 정답지가 들어있는 DataFrame
+        self.dir_path = dir_path  # 데이터의 이미지가 저장된 디렉터리 경로
+        self.meta_df = meta_df  # 데이터의 인덱스와 정답지가 들어있는 DataFrame
 
-        self.transforms = transforms# Transform
-        self.augmentations = augmentations # Augmentation
+        self.transforms = transforms  # Transform
+        self.augmentations = augmentations  # Augmentation
         
     def __len__(self):
         return len(self.meta_df)
@@ -150,12 +150,9 @@ class DatasetMNIST(torch.utils.data.Dataset):
             augmentations = A.Compose([
                 A.RandomRotate90(p=1),
                 A.GridDistortion(p=0.8),
-                # Binarize(p=1),
                 SelfCutMix(p=1),
                 A.CoarseDropout(p=0.8, max_holes=4, max_height=32, max_width=32, min_holes=1, min_height=16, min_width=16, fill_value=0),
                 A.GaussNoise(p=0.75),
-                # ShufflePieces(p=1, num_pieces=[3, 4, 5]),
-                # A.ElasticTransform(p=0.75),
             ])
             image = augmentations(image=image)['image']
         
