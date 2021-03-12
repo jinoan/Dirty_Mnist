@@ -1,4 +1,4 @@
-# DACON | 제 2회 컴퓨터 비전 학습 경진대회
+# [DACON] 제 2회 컴퓨터 비전 학습 경진대회
 
 Private rank: 9 (score: 0.87447)
 
